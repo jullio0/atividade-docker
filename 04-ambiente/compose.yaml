@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: kube_news
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # expõe o banco para acesso via localhost
+
+  db_explorer:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@rota42.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "8082:80"  # acesso à interface web do pgAdmin via http://localhost:8082
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
