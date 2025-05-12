@@ -1,0 +1,9 @@
+# Usa a imagem NGINX leve
+FROM nginx:alpine
+
+# Copia os arquivos da página para o diretório padrão de conteúdo do NGINX
+COPY site/ /usr/share/nginx/html
+
+# Porta padrão do NGINX (80)
+EXPOSE 80
+

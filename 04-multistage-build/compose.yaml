@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  video-converter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rota42/go-video-converter:latest
+    volumes:
+      - .:/app
+    # Você pode passar argumentos de teste aqui
+    command: ["input.mp4", "avi"]
+

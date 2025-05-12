@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  converter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rota42/video-converter:latest
+    volumes:
+      - .:/app   # monta o diretório atual para acesso aos vídeos
+    entrypoint: ./convert.sh
+    # Aqui você pode mudar os argumentos para testar
+    command: ["input.mp4", "mkv"]
+
